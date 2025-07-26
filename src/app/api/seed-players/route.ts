@@ -38,7 +38,7 @@ export async function GET() {
     const errors: string[] = [];
     
     // Fetch players for each team
-    for (const team of teams.slice(0, 3)) { // Limit to 3 teams for testing
+    for (const team of teams) { // Process ALL teams
       debugInfo.push(`Processing team: ${team.team.name} (ID: ${team.team.id})`);
       
       try {
@@ -60,7 +60,7 @@ export async function GET() {
         const players = playersData.response || [];
         
         // Process and insert players
-        for (const player of players.slice(0, 5)) { // Limit to 5 players per team for testing
+        for (const player of players) { // Process ALL players per team
           console.log('Raw player data:', player);
           console.log('Player statistics:', player.statistics);
           
@@ -122,7 +122,11 @@ function mapPosition(apiPosition: string): string {
     'FWD': 'FWD',
     'FW': 'FWD',
     'MF': 'MID',
-    'DF': 'DEF'
+    'DF': 'DEF',
+    'Goalkeeper': 'GK',
+    'Defender': 'DEF',
+    'Midfielder': 'MID',
+    'Forward': 'FWD'
   };
   
   const mappedPosition = positionMap[apiPosition] || 'Unknown';
