@@ -201,28 +201,30 @@ export default function TeamSelectionPage() {
                 </span>
               </h2>
               <div className="space-y-2">
-                {positionPlayers.map((player) => {
-                  const isSelected = selectedPlayers.find(p => p.id === player.id);
-                  const canSelect = validateSelection(player).length === 0;
-                  
-                  return (
-                    <div
-                      key={player.id}
-                      className={`p-3 border rounded cursor-pointer transition-colors ${
-                        isSelected
-                          ? 'bg-blue-100 border-blue-500'
-                          : canSelect
-                          ? 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                          : 'bg-gray-100 border-gray-300 opacity-50 cursor-not-allowed'
-                      }`}
-                      onClick={() => handlePlayerSelect(player)}
-                    >
-                      <div className="font-medium text-gray-800">{player.name}</div>
-                      <div className="text-sm text-gray-600">{player.club}</div>
-                      <div className="text-sm text-gray-500">£{player.price}m</div>
-                    </div>
-                  );
-                })}
+                {positionPlayers
+                  .slice()
+                  .sort((a, b) => b.price - a.price)
+                  .map((player) => {
+                    const isSelected = selectedPlayers.find(p => p.id === player.id);
+                    const canSelect = validateSelection(player).length === 0;
+                    return (
+                      <div
+                        key={player.id}
+                        className={`p-3 border rounded cursor-pointer transition-colors ${
+                          isSelected
+                            ? 'bg-blue-100 border-blue-500'
+                            : canSelect
+                            ? 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                            : 'bg-gray-100 border-gray-300 opacity-50 cursor-not-allowed'
+                        }`}
+                        onClick={() => handlePlayerSelect(player)}
+                      >
+                        <div className="font-medium text-gray-800">{player.name}</div>
+                        <div className="text-sm text-gray-600">{player.club}</div>
+                        <div className="text-sm text-gray-500">£{player.price}m</div>
+                      </div>
+                    );
+                  })}
               </div>
             </div>
           ))}
