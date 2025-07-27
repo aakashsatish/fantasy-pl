@@ -221,7 +221,7 @@ const teamsData = [
     ]
   },
   {
-    name: "Tottenham Hotspur",
+    name: "Spurs",
     players: [
       { name: "Guglielmo Vicario", position: "Goalkeeper", marketValue: "€32.00m", nationality: "Italy" },
       { name: "Antonín Kinský", position: "Goalkeeper", marketValue: "€15.00m", nationality: "Czech Republic" },
